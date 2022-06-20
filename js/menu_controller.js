@@ -60,3 +60,12 @@ function exit ()
 	name = "";
 }
 
+function imgAnim(logo)
+{
+	logo.src = "./resources/logo_anim.gif"
+}
+
+function imgStill(logo)
+{
+	logo.src = "./resources/logo.svg"
+}

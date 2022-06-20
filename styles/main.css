@@ -1,19 +1,19 @@
 
 @font-face {
-	font-family: titleSketch;
-	src: url("../resources/fonts/Sketch\ Book.ttf");
+	font-family: titleIS;
+	src: url("../resources/fonts/Alien-Encounters-Regular.ttf");
 }
 
 @font-face {
-	font-family: smallSketch;
-	src: url("../resources/fonts/Serif\ Sketch.ttf");
+	font-family: digital;
+	src: url("../resources/fonts/alarm\ clock.ttf");
 }
 
 
 body
 {
 	background-color: #ddeeee;
-	background-image: url("../resources/paper.jpg");
+	background-image: url("../resources/BackgroundTitle.png");
 	background-position: center;
 	height: 900px;
 	/*background-repeat: no-repeat;*/
@@ -28,48 +28,75 @@ a
 
 #title
 {
-	font-family: titleSketch;
+	font-family: titleIS;
 	height: auto;
-	width: 500px;
-	font-size: 6em;
-	line-height: 1em;
-	grid-area: title;
+	width: auto;
+	font-size: 8em;
+	line-height: 0.7em;
+	color: #ffae3e;
+	text-align: center;
+	margin-left: 0px;
+	text-shadow: 0px 0px 10px #ff7e00;
+	letter-spacing: 5px;
 }
 
-.menu
+#influencer-title
 {
-	margin: 20vh 20% 0 20%;
-	display: grid;
-	grid-template-columns: repeat(3,1fr);
-	grid-template-areas:
-		'. title .'
-		'left middle right'
-		'. cookie .';
-	gap: 30px;
-	align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-content: flex-start;
+	margin: auto;
 }
+
+#influencer-letters
+{
+	margin: auto auto auto 0px;
+	width: auto;
+}
+
+#clock-border
+{
+	padding-top: 10px;
+	margin: 0px;
+	background-color: #414963;
+}
+
+#digititle
+{
+	font-family: digital;
+	height: auto;
+	width: auto;
+	font-size: 4em;
+	line-height: 1.5em;
+	text-align: start;
+	margin: 7px 0px 7px 0px;
+	background-color: #000000;
+	border: 7px solid #506274;
+	text-shadow: 0px 0px 5px rgb(61, 228, 46);
+}
+
+#Ilogo
+{
+	height: 15em;
+	width: auto;
+	float: right;
+	margin: 0px 0px auto auto;
+}
+
 
 .menu-object
 {
+	color: rgb(61, 228, 46);
 	display: block;
 	margin: 2vh auto;
 	width: 325px;
 	height: 75px;
 	font-size: 1.4em;
-	font-family: smallSketch;
+	font-family: digital;
 	text-align: center;
 }
 
-#cookie-section
-{
-	grid-area: cookie;
-	margin-top: 65vh;
-}
 
-.pracs { grid-area: middle; }
-#start { grid-area: left; }
-#options { grid-area: middle; }
-#exit { grid-area: right; }
 
 p, h1
 {
@@ -79,29 +106,22 @@ p, h1
 
 button.menu-object
 {
-	background: url("../resources/button.png") no-repeat 0 0 transparent;
-	background-position: center;
-	background-size: contain;
-
-	border: none;
-	background-color: none;
+	background-color: #000000;
+	border: 7px solid #506274;
 
 	cursor: pointer;
 }
 
 button.menu-object:active
 {
-	background: url("../resources/buttonClick.png") no-repeat 0 0 transparent;
-	background-position: center;
-	background-size: contain;
+	border-color: #ffae3e;
+	text-shadow: 0px 0px 7px rgb(61, 228, 46);
 }
 
 button.menu-object:hover:not(:active)
 {
 	font-weight: bold;
-	background: url("../resources/buttonHover.png") no-repeat 0 0 transparent;
-	background-position: center;
-	background-size: contain;
+	text-shadow: 0px 0px 7px rgb(61, 228, 46);
 }
 
 #game, #game_area

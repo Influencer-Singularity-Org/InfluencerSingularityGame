@@ -8,12 +8,20 @@
 		<title> My first game - Menu </title>
 	</head>
 	<body>
-		<p class="menu-object" id="title">Memory menu</p>
+		<div id="influencer-title">
+			<img class="menu-object" id="Ilogo" onmouseover="imgAnim(this)" onmouseout="imgStill(this)" src="./resources/logo.svg" alt="Influencer Singularity Logo" width="200px" height="200px">
+
+			<div id="influencer-letters">
+				<p class="menu-object" id="title" style="text-align: start;">NFLUENCER</p>
+				<p class="menu-object" id="title" style="text-align: start;">SINGULARITY</p>
+				<div id="clock-border">
+					<p class="menu-object" id="digititle">100 DAYS REMAINING...</p>
+				</div>
+			</div>
+		</div>
+
 		<button class="menu-object" onclick="phaser_game()"> 
 			Start Game 
-		</button>
-		<button class="menu-object" onclick="ranking()"> 
-			Ranking
 		</button>
 		<button class="menu-object" onclick="options()"> 
 			Options 
