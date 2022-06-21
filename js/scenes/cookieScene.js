@@ -11,12 +11,14 @@ class CookieScene extends Phaser.Scene
         this.timedEvent;
         this.paused = false;
         this.secs;
-        // no guardo els millisegons perque trobo una mica excessiu carregar una partida i que no donar el segon sencer per processar el que passa
+        this.millis;
 
         this.gameStage = 0; // 0: animacio inicial, 1: joc, 2: animacio final
 
         this.canClick = false;
         this.cookieScale = 0.7;
+
+        this.dif_mult = 1;
 
 		this.local_save = () =>
 		{
@@ -26,7 +28,8 @@ class CookieScene extends Phaser.Scene
 				day: this.day,
 				minigame: this.minigame,
                 secs: this.secs+1,
-                cookieScale: this.cookie.scale
+                cookieScale: this.cookie.scale,
+                dif_mult: this.dif_mult
 			}
 			console.log(partida);
 			let arrayPartides = [];
@@ -52,18 +55,24 @@ class CookieScene extends Phaser.Scene
             {
                 if (this.secs == 0) // s'ha acabat el temporitzador
                 {
+                    this.saveButton.disabled = true; // no te sentit guardar just al perdre
+                    this.millis = "000";
                     this.canClick = false;
+                    this.timerText.setText(this.secs + ":" + this.millis + " YOU LOST...");
+                    this.gameStage = 2;
                 }
                 else // NO s'ha acabat el temporitzador encara
                 {
-                    if (this.cookie.scale < 0.1)
+                    if (this.cookie.scale < 0.1 * this.dif_mult)
                     {
+                        this.saveButton.disabled = true; // no te sentit guardar just al guanyar
                         this.canPressPause = false;
                         this.timedEvent.paused = true;
-                        this.gameStage = 2;
                         this.canClick = false;
                         this.day++;
                         localStorage.setItem("day", this.day);
+                        this.timerText.setText(this.secs + ":" + this.millis + " YOU WON!");
+                        this.gameStage = 2;
                     }
                 }
             }
@@ -97,18 +106,37 @@ class CookieScene extends Phaser.Scene
             this.day = l_partida.day,
             this.secs = l_partida.secs
             this.cookieScale = l_partida.cookieScale;
+            this.dif_mult = l_partida.dif_mult;
 		}
 		else
         {
+            var json = localStorage.getItem("config") || '{"dificulty": "hard"}';
+			var options_data = JSON.parse(json);
+
+			switch (options_data.dificulty)
+			{
+				case "easy":
+					this.dif_mult = 2;
+					break;
+
+				case "normal":
+					this.dif_mult = 1;
+					break;
+
+				case "hard":
+					this.dif_mult = 0.7;
+					break;
+			}
+
             this.username = localStorage.getItem("username","unknown");
             this.day = localStorage.getItem("day",1);
-            this.secs = 10;
+            this.secs = 10 * this.dif_mult;
             this.cookieScale = 0.7;
         }
         sessionStorage.clear();
 
-        var saveButton = document.getElementById("save-button");
-		saveButton.addEventListener("click", this.local_save);
+        this.saveButton = document.getElementById("save-button");
+		this.saveButton.addEventListener("click", this.local_save);
 
         this.background = this.add.sprite(50, 250, "back");
         
@@ -170,9 +198,9 @@ class CookieScene extends Phaser.Scene
             }
 
             this.secs = this.timedEvent.repeatCount;
-            let millis = (1-this.timedEvent.getProgress()).toString().substr(2, 3);
-            if (!millis) millis = "000"
-            this.timerText.setText(this.secs + ":" + millis);
+            this.millis = (1-this.timedEvent.getProgress()).toString().substr(2, 3);
+            if (!this.millis) this.millis = "000"
+            if (this.gameStage != 2) this.timerText.setText(this.secs + ":" + this.millis);
 
 
             if (!this.paused)
