@@ -1,7 +1,8 @@
 window.onload = () =>
 {
 	var daysText = document.getElementById("digititle");
-	var daysLocal = localStorage.getItem("day",1);
+	var daysLocal = localStorage.getItem("day");
+	if (!daysLocal) daysLocal = 1;
 	daysText.innerText = 100-daysLocal+1 + " DAYS REMAINING...";
 }
 
