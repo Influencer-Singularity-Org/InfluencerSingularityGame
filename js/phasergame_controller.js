@@ -10,7 +10,7 @@ var config = {
 			debug: false
 		}
 	},
-    scene: [ GameScene ]
+    scene: [ CookieScene ]
 };
 
 var game = new Phaser.Game(config);

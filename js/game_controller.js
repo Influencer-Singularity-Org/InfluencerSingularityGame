@@ -9,15 +9,19 @@ var gameObj = function (){
 		el: "#game_id",
 		data: {
 			username:'',
+			day: 1
 		},
 		created: function(){
 			if (l_partida){
 				this.username = l_partida.username;
+				this.day = l_partida.day
 			}
 			else{
-				this.username = sessionStorage.getItem("username","unknown");
+				this.username = localStorage.getItem("username","unknown");
+				this.day = localStorage.getItem("day",1);
 			}
 			//sessionStorage.clear();
+			console.log(this.username);
 		}
 	});
 	return {};

@@ -20,10 +20,15 @@ body
 	background-size: cover;
 }
 
-a
+a.menu-object
 {
 	text-decoration: none;
-	color: #3d88ae;
+	color: #1eb2fc;
+	background-color: #000000;
+	border: 7px solid #506274;
+	height: fit-content;
+	width: fit-content;
+	padding: 1em;
 }
 
 #title
@@ -73,6 +78,7 @@ a
 	background-color: #000000;
 	border: 7px solid #506274;
 	text-shadow: 0px 0px 5px rgb(61, 228, 46);
+	padding-left: 0.5em;
 }
 
 #Ilogo
@@ -112,13 +118,13 @@ button.menu-object
 	cursor: pointer;
 }
 
-button.menu-object:active
+button.menu-object:active, a.menu-object:active
 {
 	border-color: #ffae3e;
 	text-shadow: 0px 0px 7px rgb(61, 228, 46);
 }
 
-button.menu-object:hover:not(:active)
+button.menu-object:hover:not(:active), a.menu-object:hover:not(:active)
 {
 	font-weight: bold;
 	text-shadow: 0px 0px 7px rgb(61, 228, 46);
@@ -142,5 +148,14 @@ canvas
 {
 	margin-right: 10px;
 	width: 200px;
+}
+
+#dif-sel
+{
+	margin: 5em auto;
+	height: fit-content;
+	background-color: #000000;
+	padding: 1em;
+	border: 7px solid #506274;
 }
 
